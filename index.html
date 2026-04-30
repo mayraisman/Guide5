@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>המדריך הפרקטי: איך ליצור סקילז בקלוד ולעבוד חכם יותר</title>
+  <style>
+    :root {
+      --page: #f3f0ea;
+      --paper: #fcfbf8;
+      --ink: #171717;
+      --muted: #5f5a53;
+      --line: #d9d1c7;
+      --line-strong: #b7ab9d;
+      --accent: #b14f2b;
+      --accent-soft: #f1e3da;
+      --max-width: 980px;
+      --radius: 22px;
+      --shadow: 0 10px 30px rgba(30, 24, 16, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: "Segoe UI", "Arial", sans-serif;
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    video {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      width: min(calc(100% - 28px), var(--max-width));
+      margin: 20px auto 48px;
+    }
+
+    .sheet {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      padding: 42px 40px 34px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand-mark {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 96px;
+      max-width: 18vw;
+      opacity: 0.92;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .kicker {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 700;
+      background: #fff;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.9fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 4.2vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .subhead {
+      margin: 16px 0 0;
+      max-width: 28ch;
+      font-size: clamp(1.18rem, 1.8vw, 1.5rem);
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .source-line {
+      margin: 22px 0 0;
+      font-size: 1.06rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .lead {
+      margin: 28px 0 0;
+      max-width: 58ch;
+      font-size: 1.16rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 800;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: var(--ink);
+      color: #fff;
+      border: 1px solid var(--ink);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line-strong);
+    }
+
+    .author-panel {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .portrait {
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #f6f2eb;
+      overflow: hidden;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .author-panel h2 {
+      margin: 16px 0 8px;
+      font-size: 1.45rem;
+      line-height: 1.35;
+    }
+
+    .author-panel p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .author-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .author-tags span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .content {
+      padding: 0 40px 40px;
+    }
+
+    .intro {
+      padding: 26px 0 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .intro p {
+      margin: 0;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .intro .button {
+      margin-top: 18px;
+    }
+
+    .chapter {
+      padding: 34px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .chapter:last-of-type {
+      border-bottom: 0;
+    }
+
+    .chapter-label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .chapter h3 {
+      margin: 0 0 16px;
+      font-size: clamp(1.7rem, 2.5vw, 2.25rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter p {
+      margin: 0;
+      font-size: 1.12rem;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .step {
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .step p {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .list {
+      margin-top: 18px;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li {
+      padding: 14px 16px;
+      border-right: 3px solid var(--accent);
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      font-size: 1.04rem;
+    }
+
+    .timeline {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .timeline-item span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.96rem;
+      font-weight: 800;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      font-size: 1.04rem;
+    }
+
+    .callout {
+      margin: 34px 0;
+      padding: 24px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--line-strong);
+    }
+
+    .callout h3 {
+      margin: 0 0 10px;
+      font-size: 1.7rem;
+      line-height: 1.3;
+    }
+
+    .callout p {
+      margin: 0;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .callout .button {
+      margin-top: 18px;
+    }
+
+    .video-card {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .video-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .video-frame {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #000;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: auto;
+    }
+
+    .summary {
+      padding: 34px 0 6px;
+    }
+
+    .summary h3 {
+      margin: 0 0 16px;
+      font-size: clamp(1.9rem, 2.8vw, 2.6rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .summary p {
+      margin: 0 0 14px;
+      font-size: 1.12rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .contact-button:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .contact-button.whatsapp {
+      background: #25d366;
+      border-color: #25d366;
+    }
+
+    .contact-button.linkedin {
+      background: #0a66c2;
+      border-color: #0a66c2;
+    }
+
+    .copyright {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .process {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: min(calc(100% - 16px), var(--max-width));
+        margin: 8px auto 24px;
+      }
+
+      .hero,
+      .content {
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+
+      .hero {
+        padding-top: 26px;
+        padding-bottom: 26px;
+      }
+
+      .kicker {
+        margin-bottom: 14px;
+        padding: 5px 10px;
+        font-size: 0.84rem;
+        line-height: 1.5;
+      }
+
+      .brand-mark {
+        position: static;
+        width: 82px;
+        margin-bottom: 18px;
+      }
+
+      .sheet {
+        border-radius: 22px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .button,
+      .contact-button {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2.3rem;
+        line-height: 1.08;
+      }
+
+      .subhead {
+        max-width: none;
+        font-size: 1.08rem;
+        line-height: 1.65;
+      }
+
+      .chapter p,
+      .summary p,
+      .lead,
+      .source-line {
+        font-size: 1.04rem;
+      }
+
+      .lead {
+        margin-top: 22px;
+        line-height: 1.8;
+      }
+
+      .author-panel {
+        padding: 16px;
+      }
+
+      .author-panel h2 {
+        font-size: 1.3rem;
+      }
+
+      .author-panel p {
+        font-size: 0.98rem;
+        line-height: 1.75;
+      }
+
+      .author-tags span {
+        font-size: 0.82rem;
+      }
+
+      .intro {
+        padding: 22px 0 24px;
+      }
+
+      .chapter {
+        padding: 26px 0;
+      }
+
+      .chapter-label {
+        margin-bottom: 8px;
+        font-size: 0.84rem;
+      }
+
+      .chapter h3,
+      .summary h3,
+      .callout h3 {
+        font-size: 1.55rem;
+        line-height: 1.3;
+      }
+
+      .list {
+        gap: 8px;
+      }
+
+      .list li,
+      .timeline-item,
+      .step,
+      .video-card,
+      .callout {
+        padding: 16px;
+      }
+
+      .list li,
+      .timeline-item p,
+      .step p,
+      .video-card p,
+      .callout p {
+        font-size: 0.98rem;
+        line-height: 1.75;
+      }
+
+      .timeline-item {
+        gap: 12px;
+      }
+
+      .timeline-item span {
+        min-width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+      }
+
+      .video-frame {
+        border-radius: 14px;
+      }
+
+      .video-frame video {
+        min-height: 220px;
+        object-fit: cover;
+      }
+
+      .hero-actions,
+      .contact-links {
+        gap: 10px;
+      }
+
+      .button,
+      .contact-button {
+        min-height: 50px;
+        padding: 12px 18px;
+        font-size: 0.98rem;
+        text-align: center;
+      }
+
+      .summary {
+        padding-top: 28px;
+      }
+
+      .copyright {
+        margin-top: 24px;
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+    }
+
+    @media (max-width: 420px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .hero,
+      .content {
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      .chapter h3,
+      .summary h3,
+      .callout h3 {
+        font-size: 1.4rem;
+      }
+
+      .button,
+      .contact-button {
+        font-size: 0.95rem;
+      }
+
+      .video-frame video {
+        min-height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="sheet">
+      <header class="hero">
+        <a class="brand-mark" href="#guide" aria-label="ScaleUp">
+          <img src="./לוגו.jpeg" alt="ScaleUp logo">
+        </a>
+        <div class="kicker">מדריך פרקטי לבניית סקילז בקלוד ולעבודה חכמה ועקבית יותר</div>
+        <div class="hero-grid">
+          <div>
+            <h1>המדריך הפרקטי: איך ליצור סקילז בקלוד ולעבוד חכם יותר</h1>
+            <p class="subhead">איך לשמור לקלוד את דרך העבודה שלכם, כדי להפסיק להתחיל מחדש בכל משימה.</p>
+            <p class="source-line">
+              מאת מאי רייזמן, ScaleUp. מדריך פרקטי שמראה איך להפוך תוצרים טובים לתהליך עבודה עקבי, מהיר וחכם יותר.
+            </p>
+            <p class="lead">
+              אם כבר יצא לכם לקבל תוצאה טובה מה-AI ואז לגלות שבפעם הבאה צריך להסביר הכול מחדש, המדריך הזה בשבילכם. כאן תראו איך לוקחים סטנדרט עבודה שאישרתם, שומרים אותו כסקיל, ומשתמשים בו שוב ושוב.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0ppggGsyTUlEsBGauiMAHEbJ03BSY3Aseb-9B-J_g85v7uUPdTpGXkxPMwEuAtPF0JqB00ywre" target="_blank" rel="noreferrer">לקביעת שיחת היכרות בחינם</a>
+              <a class="button button-secondary" href="#guide">לקריאת המדריך</a>
+            </div>
+          </div>
+
+          <aside class="author-panel">
+            <div class="portrait">
+              <img src="./אני.jpeg" alt="מאי רייזמן">
+            </div>
+            <h2>מאי רייזמן</h2>
+            <p>
+              אני חי את החיבור בין אסטרטגיה, תהליכים ובינה מלאכותית.
+            </p>
+            <p>
+              המטרה שלי היא לעזור לאנשים וארגונים לעבוד עם AI בצורה מסודרת יותר, כך שכל תוצר טוב יהפוך לנכס עבודה שחוזר על עצמו.
+            </p>
+            <p>
+              המדריך הזה מראה איך לייצר בקלוד תהליך עבודה שמבוסס על הסטנדרט שלכם, ולא על ניסוי וטעייה מחדש בכל פעם.
+            </p>
+            <div class="author-tags">
+              <span>ScaleUp</span>
+              <span>סקילז בקלוד</span>
+              <span>Workflow Design</span>
+            </div>
+          </aside>
+        </div>
+      </header>
+
+      <div class="content" id="guide">
+        <section class="intro">
+          <p>
+            סקיל הוא דרך לשמור לקלוד את הדרך שבה אתם אוהבים לעבוד. במקום להסביר מחדש איך אתם רוצים גאנט, מצגת או מסמך, מגדירים פעם אחת, ומאותו רגע כל תוצר חדש נבנה באותו סגנון, באותה שפה עיצובית ובאותה רמת דיוק שכבר אישרתם.
+          </p>
+          <p style="margin-top:16px;">
+            זה לא רק חוסך זמן. זה יוצר עקביות, מקטין תיקונים, ומאפשר לכם לעבוד עם AI כמו עם מערכת שמכירה את הסטנדרט שלכם.
+          </p>
+          <a class="button button-secondary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0ppggGsyTUlEsBGauiMAHEbJ03BSY3Aseb-9B-J_g85v7uUPdTpGXkxPMwEuAtPF0JqB00ywre" target="_blank" rel="noreferrer">רוצה לבנות workflows כאלה אצלך?</a>
+        </section>
+
+        <section class="chapter">
+          <span class="chapter-label">רקע</span>
+          <h3>מה זה בכלל סקיל ולמה זה חשוב?</h3>
+          <p>
+            סקיל הוא למעשה זיכרון עבודה מובנה. במקום לנסח בכל פעם מחדש איך אתם רוצים שהתוצאה תיראה, אתם מלמדים את קלוד פעם אחת איך נראה הסטנדרט שלכם, ואז משתמשים בו שוב בכל משימה דומה.
+          </p>
+          <ul class="list">
+            <li><strong>פחות חזרות:</strong> לא צריך להסביר כל פעם מחדש איך אתם רוצים גאנט, מצגת או מסמך.</li>
+            <li><strong>יותר עקביות:</strong> כל תוצר עתידי נוצר באותו סגנון, באותה שפה עיצובית ובאותה רמת דיוק.</li>
+            <li><strong>פחות תיקונים:</strong> ככל שההכוונה נשמרת בתוך סקיל, כך יש פחות סיבובי שיפור מיותרים.</li>
+            <li><strong>עבודה חכמה יותר:</strong> במקום להתחיל מאפס, אתם מתחילים מסטנדרט שכבר אושר.</li>
+          </ul>
+          <div class="video-card">
+            <p>לפני שממשיכים לשלבים, הנה הדגמה מעשית קצרה: <strong>יצירת סקילז בקלוד</strong></p>
+            <div class="video-frame">
+              <video controls preload="metadata">
+                <source src="./יצירת סקילז בקלוד.mp4" type="video/mp4">
+                הדפדפן שלך לא תומך בניגון וידאו ישירות מתוך העמוד.
+              </video>
+            </div>
+          </div>
+        </section>
+
+        <section class="chapter">
+          <span class="chapter-label">שלב 1</span>
+          <h3>הגדירו את המשימה והזינו את הנתונים</h3>
+          <p>
+            התחילו שיחה רגילה עם ה-AI, בדיוק כמו שאתם עובדים היום. אין צורך לנסח מושלם. פשוט להסביר בשפה פשוטה מה אתם צריכים.
+          </p>
+          <div class="process">
+            <div class="step">
+              <strong>מה מספרים לקלוד?</strong>
+              <p>מה הארגון, מה מטרת הפרויקט, אילו משאבים יש, ומה לוחות הזמנים.</p>
+            </div>
+            <div class="step">
+              <strong>מה חשוב לזכור?</strong>
+              <p>אל תנסו להיות “מושלמים”. עדיף הסבר ברור ופשוט מאשר ניסוח מתוחכם ומסורבל.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="chapter">
+          <span class="chapter-label">שלב 2</span>
+          <h3>הגדירו את סוג התוצר והכוונה</h3>
+          <p>
+            כאן מתחילים לכוון את התוצאה. ככל שתגדירו טוב יותר את הפורמט והסטנדרט, כך תחסכו תיקונים בהמשך.
+          </p>
+          <ul class="list">
+            <li><strong>איזה פורמט?</strong> אקסל, מצגת או מסמך.</li>
+            <li><strong>למי זה מיועד?</strong> לקוח, הנהלה, ועדת היגוי או צוות פנימי.</li>
+            <li><strong>מה חשוב בעיצוב?</strong> יישור לימין, שילוב לוגו, צבעים, מבנה, ריווח והיררכיה.</li>
+            <li><strong>המטרה:</strong> לייצר כבר מהסבב הראשון תוצאה שקרובה ככל האפשר למה שאתם באמת רוצים.</li>
+          </ul>
+        </section>
+
+        <section class="chapter">
+          <span class="chapter-label">שלב 3</span>
+          <h3>קבלו תוצאה ותדייקו</h3>
+          <p>
+            כמעט תמיד התוצאה הראשונה לא תהיה מושלמת. זה לא סימן שמשהו לא עובד, אלא חלק טבעי מהתהליך. השלב החשוב כאן הוא לא להתחיל מחדש, אלא לתת פידבק מדויק.
+          </p>
+          <div class="callout">
+            <h3>הנקודה הקריטית היא לא “האם זה מושלם”, אלא “האם אני מדייק את קלוד במקום להתחיל מאפס”.</h3>
+            <p>
+              לדוגמה: “העיצוב לא תואם את המותג שלי, הצבעים לא קשורים, הלוגו עם רקע לבן ואין עקביות.” פידבק כזה מקדם את התוצאה הרבה יותר מאשר לבקש שוב הכול מחדש.
+            </p>
+          </div>
+        </section>
+
+        <section class="chapter">
+          <span class="chapter-label">שלב 4</span>
+          <h3>טיפ למתקדמים: תנו דוגמה</h3>
+          <p>
+            אם ה-AI עדיין לא קולע לטעם שלכם, אל תנסו להסביר יותר. תראו לו. כשמעלים דוגמה אמיתית, קלוד מבין הרבה יותר טוב את הסטנדרט שלכם.
+          </p>
+          <ul class="list">
+            <li><strong>מה אפשר להעלות?</strong> מצגת קיימת, טבלה שאתם אוהבים, או מסמך שכבר עובד לכם.</li>
+            <li><strong>מה להגיד?</strong> “זה הסטנדרט שלי. תלמד את זה.”</li>
+            <li><strong>מה קלוד קולט מזה?</strong> פונטים, צבעים, מבנה, היררכיה וסגנון עבודה.</li>
+            <li><strong>מה הרווח?</strong> קפיצה משמעותית באיכות התוצאה ובדיוק שלה.</li>
+          </ul>
+        </section>
+
+        <section class="chapter">
+          <span class="chapter-label">שלב 5</span>
+          <h3>שמרו את זה כסקיל</h3>
+          <p>
+            כשהגעתם לתוצאה שאתם באמת אוהבים, זה הרגע לעצור ולהפוך אותה לנכס עבודה חוזר. במקום להמשיך הלאה, תבקשו מקלוד לשמור את הסטנדרט הזה כסקיל.
+          </p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span>1</span>
+              <p>מגיעים לתוצאה שאתם באמת מרוצים ממנה.</p>
+            </div>
+            <div class="timeline-item">
+              <span>2</span>
+              <p>עוצרים רגע ולא רצים למשימה הבאה.</p>
+            </div>
+            <div class="timeline-item">
+              <span>3</span>
+              <p>כותבים: “מעולה. מעכשיו כל פעם שאבקש, תיצור לי בדיוק כזה. תייצר מזה סקיל.”</p>
+            </div>
+            <div class="timeline-item">
+              <span>4</span>
+              <p>מהרגע הזה, קלוד יודע לחזור לאותו סטנדרט עבודה גם במשימות הבאות.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="chapter">
+          <span class="chapter-label">שלב 6</span>
+          <h3>שימוש חוזר: כאן הקסם קורה</h3>
+          <p>
+            מכאן והלאה העבודה משתנה לגמרי. במקום להסביר שוב ושוב, אתם פשוט מבקשים את התוצר הבא ומזינים רק את המידע החדש.
+          </p>
+          <ul class="list">
+            <li><strong>מה כותבים?</strong> “תיצור לי גאנט לפרויקט הבא…”</li>
+            <li><strong>מה מקבלים?</strong> אותו מבנה, אותו עיצוב, ואותה רמת דיוק.</li>
+            <li><strong>מה נשאר לכם לעשות?</strong> רק לעדכן את התוכן החדש או את הנתונים החדשים.</li>
+            <li><strong>למה זה חזק?</strong> כי ה-AI כבר עובד בדרך שלכם, ולא צריך לחנך אותו מחדש בכל פעם.</li>
+          </ul>
+        </section>
+
+        <section class="callout">
+          <h3>אם אתם עושים משהו יותר מפעם אחת, אין סיבה להתחיל מחדש כל פעם.</h3>
+          <p>
+            תשקיעו פעם אחת. תשמרו כסקיל. ומאותו רגע, ה-AI עובד בדרך שלכם, ולא להפך.
+          </p>
+          <a class="button button-primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0ppggGsyTUlEsBGauiMAHEbJ03BSY3Aseb-9B-J_g85v7uUPdTpGXkxPMwEuAtPF0JqB00ywre" target="_blank" rel="noreferrer">לקביעת שיחת היכרות בחינם</a>
+        </section>
+
+        <section class="summary">
+          <h3>סיכום</h3>
+          <p>
+            סקיל טוב לא רק שומר הוראות. הוא שומר דרך עבודה. ברגע שיש לכם תוצאה טובה, אפשר להפוך אותה לתבנית עבודה קבועה שממשיכה לשרת אתכם שוב ושוב.
+          </p>
+          <p>
+            זה המהלך שעוזר לעבור משימוש מזדמן ב-AI לעבודה מסודרת, עקבית ויעילה יותר.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0ppggGsyTUlEsBGauiMAHEbJ03BSY3Aseb-9B-J_g85v7uUPdTpGXkxPMwEuAtPF0JqB00ywre" target="_blank" rel="noreferrer">לקביעת שיחת היכרות בחינם</a>
+            <a class="button button-secondary" href="#guide">לחזרה לתחילת המדריך</a>
+          </div>
+          <div class="contact-links">
+            <a class="contact-button whatsapp" href="https://wa.me/972538256910" target="_blank" rel="noreferrer">לשיחה בוואטסאפ</a>
+            <a class="contact-button linkedin" href="https://www.linkedin.com/in/mayraisman/" target="_blank" rel="noreferrer">לפרופיל הלינקדאין</a>
+          </div>
+          <div class="copyright">
+            ScaleUp Business Consulting · מדריך בעברית ליצירת סקילז בקלוד ולעבודה חכמה יותר עם AI
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
